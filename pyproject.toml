@@ -1,0 +1,39 @@
+[project]
+name = "grad-to-gpt"
+version = "0.1.0"
+description = "Build the deep-learning stack from scratch: scalar autograd -> MLP on MNIST -> char-level GPT."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+]
+
+# Heavier deep-learning deps — install only when you reach component 2 (MNIST)
+# and 3 (GPT):   uv sync --extra dl
+[project.optional-dependencies]
+dl = [
+    "torch>=2.2",
+    "matplotlib>=3.8",
+]
+
+# Dev tools install by default with `uv sync`.
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.5",
+]
+
+# Treat this as an app, not a distributable package — no build backend needed.
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
