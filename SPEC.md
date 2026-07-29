@@ -1,7 +1,7 @@
 # Grad-to-GPT — Project Spec (Stage 1, Project 1)
 
-**Owner:** Viksit Singh · **Started:** 2026-07-02 · **Target ship:** 2026-07-16 (2 weeks)
-**Compute:** Google Colab (free/Pro GPU) · **Corpus:** Tiny Shakespeare · **Status:** Phase 2 (skeleton)
+**Owner:** Viksit Singh · **Started:** 2026-07-10 · **Target ship:** 2026-07-24 (2 weeks)
+**Compute:** Google Colab (free/Pro GPU) · **Corpus:** Tiny Shakespeare · **Status:** Phase 3 (core loop from scratch)
 
 ---
 

@@ -30,3 +30,9 @@ runs/
 .DS_Store
 .vscode/
 .idea/
+
+# Personal design / learning notes (kept local, not in the public repo)
+design-notes/
+
+# Pytest cache
+.pytest_cache/
