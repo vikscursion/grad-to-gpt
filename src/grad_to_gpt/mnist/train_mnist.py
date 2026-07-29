@@ -1,6 +1,6 @@
 import torch
-import torchvision
 import torch.nn.functional as F
+import torchvision
 from torch.utils.data import DataLoader
 
 # --- data: MNIST as tensors, served in shuffled mini-batches ---
@@ -21,12 +21,14 @@ params = [W1, b1, W2, b2]
 
 # print([tuple(p.shape) for p in params])  # temporary shape check
 
+
 # forward pass
 def forward(images):
     x = images.view(images.shape[0], -1)
     h = torch.relu(x @ W1 + b1)
     logits = h @ W2 + b2
     return logits
+
 
 # images, labels = next(iter(train_loader))
 # print("logits shape:", forward(images).shape)
@@ -37,14 +39,14 @@ def forward(images):
 lr = 0.1
 for epoch in range(3):
     for images, labels in train_loader:
-        logits = forward(images)                 # forward
-        loss = F.cross_entropy(logits, labels)   # loss
+        logits = forward(images)  # forward
+        loss = F.cross_entropy(logits, labels)  # loss
 
-        for p in params:                         # zero the grads
+        for p in params:  # zero the grads
             p.grad = None
-        loss.backward()                          # backward -> fills p.grad
+        loss.backward()  # backward -> fills p.grad
 
-        with torch.no_grad():                    # nudge each param downhill
+        with torch.no_grad():  # nudge each param downhill
             for p in params:
                 p -= lr * p.grad
     print(f"epoch {epoch}  loss {loss.item():.3f}")
@@ -53,7 +55,7 @@ for epoch in range(3):
 correct = total = 0
 with torch.no_grad():
     for images, labels in test_loader:
-        preds = forward(images).argmax(dim=1)    # highest-scoring class per image
+        preds = forward(images).argmax(dim=1)  # highest-scoring class per image
         correct += (preds == labels).sum().item()
         total += labels.shape[0]
 print(f"test accuracy: {correct / total:.4f}")
